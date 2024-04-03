@@ -126,17 +126,57 @@ def welcome():
     
 
 
+def run_game(computer_board, player_board):
+    """
+    Runs the game loop until one of the players wins
+    """
+
+    While True:
+        # Players turn
+
+        print("\nPlayer's turn:")
+        player_guess = make_guess(computer_board)
+        if player_guess:
+            x, y = player_guess
+            result = computer_board.board.guess(x, y)
+            print("Result of player's guess:", result)
+            player_board.guesses.append(player_guess)
+
+            if not computer_board.ships:
+                print("Congratulations! You have sunk all the enemy ships!")
+                break
+
+        
+        # Computer's turn
+        print(\nComputer's turn:')
+        computer_guess = (random_point(len(player_board.board)), random_point(len(player_board.board)))
+        result = player_board.guesses(computer_guess[0], computer_guess[1])
+        print("Result of computer's guess:", result)
+        computer_board.guesses.append(computer_guess)
+
+        if not playboard.ships:
+            print("The computer has sunk all you ships. You lose!")
+            break
+
+
+
+        
+    
+
 
 
 def start_game():
+    """
+    Sets the amout of ships and size of the board, it event sets the scores for both players.
+    Runs the welcome function and prompt player for a name. 
+    It also set the board for both player and computer and then generats the ships
+    """
 
     size = 5
     num_ships = 4
     scores["computer"] = 0
     scores["player"] = 0
     
-
-
     welcome()
     player_name = input("Please enter you name: ")
     
@@ -146,6 +186,8 @@ def start_game():
     for _ in range(num_ships):
         populate_board(player_board)
         populate_board(computer_board)
+
+    play_game(computer_board, player_board)
 
 
 
