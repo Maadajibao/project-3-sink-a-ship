@@ -30,8 +30,7 @@ class Board:
     def add_ships(self, x, y):
         # in case we extend code so user can set amout of ships
         
-        if len(self.ships) >= self.num_ships:
-            print("Error")
+
 
         self.ships.append((x,y))
         if self.type == "player":
@@ -154,7 +153,7 @@ def run_game(computer_board, player_board):
                 break
         
         # Print the computer's board after payer's turn
-        computer_board.print_board()
+        player_board.print_board()
 
         
         # Computer's turn
@@ -169,7 +168,7 @@ def run_game(computer_board, player_board):
             break
 
         # Print the player's board after computers turn.
-        player_board.print_board()
+        computer_board.print_board()
 
 
 
@@ -196,9 +195,9 @@ def start_game():
     computer_board = Board(size, num_ships, "computer", "computer")
     player_board = Board(size, num_ships, player_name, "player")
 
-    for _ in range(num_ships):
-        populate_board(player_board)
-        populate_board(computer_board)
+   
+    populate_board(player_board)
+    populate_board(computer_board)
 
     run_game(computer_board, player_board)
 
