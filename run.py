@@ -70,6 +70,27 @@ def populate_board(board):
         board.add_ships(x,y, board.type)
 
 
+def valid_coordinates():
+
+    """
+    Validates that the input coordinates are within the board
+    """
+
+    try:
+        x = int(x)
+        y = int(y)
+
+        if x < 0 or x >len(board) or y < 0 or y >= len(board[0]):
+            raise ValueError("Your shot is out of bounds! Choose a number within the board's range.")
+    
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again")
+        print("Please enter an number between 1 and 5")
+        return False
+    return True
+
+
+
 
 
 def welcome():
@@ -113,4 +134,6 @@ def start_game():
 
 
 start_game()
+
+
 
