@@ -70,7 +70,7 @@ def populate_board(board):
         board.add_ships(x,y, board.type)
 
 
-def valid_coordinates():
+def valid_coordinates(x, y, board):
 
     """
     Validates that the input coordinates are within the board
@@ -80,7 +80,7 @@ def valid_coordinates():
         x = int(x)
         y = int(y)
 
-        if x < 0 or x >len(board) or y < 0 or y >= len(board[0]):
+        if x < 0 or x >len(board.board) or y < 0 or y >= len(board.board[0]):
             raise ValueError("Your shot is out of bounds! Choose a number within the board's range.")
     
     except ValueError as e:
@@ -131,14 +131,14 @@ def run_game(computer_board, player_board):
     Runs the game loop until one of the players wins
     """
 
-    While True:
+    while True:
         # Players turn
 
         print("\nPlayer's turn:")
         player_guess = make_guess(computer_board)
         if player_guess:
             x, y = player_guess
-            result = computer_board.board.guess(x, y)
+            result = computer_board.guess(x, y)
             print("Result of player's guess:", result)
             player_board.guesses.append(player_guess)
 
@@ -148,13 +148,13 @@ def run_game(computer_board, player_board):
 
         
         # Computer's turn
-        print(\nComputer's turn:')
+        print("\nComputer's turn:")
         computer_guess = (random_point(len(player_board.board)), random_point(len(player_board.board)))
-        result = player_board.guesses(computer_guess[0], computer_guess[1])
+        result = player_board.guess(computer_guess[0], computer_guess[1])
         print("Result of computer's guess:", result)
         computer_board.guesses.append(computer_guess)
 
-        if not playboard.ships:
+        if not player_board.ships:
             print("The computer has sunk all you ships. You lose!")
             break
 
@@ -187,7 +187,7 @@ def start_game():
         populate_board(player_board)
         populate_board(computer_board)
 
-    play_game(computer_board, player_board)
+    run_game(computer_board, player_board)
 
 
 
