@@ -8,6 +8,16 @@ class Board:
     def __init__(self, size):
         self.size = size 
         self.board = [["." for x in range(size)] for y in range(size)]
+    
+
+def random_point(size):
+    """
+    Generate a random number between 0 and the length of the board minus one.
+    We minus 1 for the size of the board we set.
+    """
+    return randint(0,size - 1)
+
+
 
 
 def welcome():
@@ -29,7 +39,9 @@ def welcome():
 
 def game_run():
 
+
     welcome()
 
 
 game_run()
+
