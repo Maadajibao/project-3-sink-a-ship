@@ -1,5 +1,7 @@
 from random import randint
 
+scores = {"computer": 0, "player": 0}
+
 class Board:
     """
     Main board class. Sets Board size, the number of ships,
