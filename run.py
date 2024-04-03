@@ -1,5 +1,13 @@
 from random import randint
 
+class Board:
+    """
+    Main board class, as size, board and ship attribute. 
+    """
+
+    def __init__(self, size):
+        self.size = size 
+        self.board = [["." for x in range(size)] for y in range(size)]
 
 
 def welcome():
@@ -15,6 +23,8 @@ def welcome():
     print(f"\nBoard Size: | Number of Ships")
     print("Top left corner is row: 0, col: 0\n")
     print("-" *35)
+    print("Whats your name General?:\n")
+    input("Please enter you name: ")
 
 
 def game_run():
