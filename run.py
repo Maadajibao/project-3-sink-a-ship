@@ -13,7 +13,7 @@ class Board:
         self.size = size 
         self.board = [["." for x in range(size)] for y in range(size)]
         self.num_ships = num_ships
-        self. name = name
+        self.name = name
         self.type = type
         self.guesses = []
         self.ships = []
@@ -23,7 +23,7 @@ class Board:
             print(" ".join(row))
         
     
-    def add_ships(self, x, y, type = "computer"):
+    def add_ships(self, x, y, type):
         # in case we extend code so user can set amout of ships
         if len(self.ships) >= self.num_ships:
             print("Error: You cannot add any more ships!")
@@ -43,6 +43,21 @@ def random_point(size):
     return randint(0,size - 1)
 
 
+def populate_board(board):
+    """
+    Will populate x with random_point and the same with y with ships from add_ship function.
+    """
+
+
+    for _ in range(board.num_ships):
+        x = random_point(board.size)
+        y = random_point(board.size)
+        while (x,y) in board.ships:
+            x = random_point(board.size)
+            y = random_point(board.size)
+        board.add_ships(x,y, board.type)
+
+
 
 
 def welcome():
@@ -59,14 +74,31 @@ def welcome():
     print("Top left corner is row: 0, col: 0\n")
     print("-" *35)
     print("Whats your name General?:\n")
-    input("Please enter you name: ")
+    
 
 
-def game_run():
+
+
+def start_game():
+
+    size = 5
+    num_ships = 4
+    scores["computer"] = 0
+    scores["player"] = 0
+    
 
 
     welcome()
+    player_name = input("Please enter you name: ")
+    
+    computer_board = Board(size, num_ships, "computer", "computer")
+    player_board = Board(size, num_ships, player_name, "player")
+
+    for _ in range(num_ships):
+        populate_board(player_board)
+        populate_board(computer_board)
 
 
-game_run()
+
+start_game()
 
