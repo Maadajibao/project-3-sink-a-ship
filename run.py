@@ -91,6 +91,22 @@ def valid_coordinates():
 
 
 
+def make_guess(board):
+    """
+    Prompt the user to enter coordinates for a guess and checks if they are valid.
+    If valid, returns the coordinates as tuple (x, y), otherwise returns None.
+    """
+
+    while True:
+        x = input("Enter row (0-4): ")
+        y = input("Enter row (0-4): ")
+
+        if valid_coordinates(x, y, board):
+            return int(x), int(y)
+        else:
+            print("invalid coordinates! Please try again")
+    
+
 
 
 def welcome():
