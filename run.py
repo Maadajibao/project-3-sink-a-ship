@@ -25,12 +25,24 @@ class Board:
     
     def add_ships(self, x, y, type):
         # in case we extend code so user can set amout of ships
+        print("Number of ships:", len(self.ships))
+        print("Maximum allower ships:", self.num_ships)
         if len(self.ships) >= self.num_ships:
             print("Error: You cannot add any more ships!")
         else:
             self.ships.append((x,y))
             if self.type == "player":
                 self.board[x][y] = "@"
+
+    def guess(self, x, y):
+        self.guesses.append((x,y))
+        self.board[x][y] = "X"
+
+        if (x, y) in self.ships:
+            self.board[x][y] = "*"
+            return "Boom!(Hit)"
+        else:
+            return "Slaash(Miss)"
 
 
     
@@ -70,7 +82,7 @@ def welcome():
     print("-" *35)
     print("\nMission:""You task is to Sink All Enemy Ships\n")
     print("-" *35)
-    print(f"\nBoard Size: | Number of Ships")
+    print(f"\nBoard Size:  | Number of Ships: ")
     print("Top left corner is row: 0, col: 0\n")
     print("-" *35)
     print("Whats your name General?:\n")
