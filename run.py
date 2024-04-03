@@ -2,17 +2,40 @@ from random import randint
 
 class Board:
     """
-    Main board class, as size, board and ship attribute. 
+    Main board class. Sets Board size, the number of ships,
+    the player's name and the board type(player or computer)
+    Has methods for adding ships and guesses and printing the board
     """
 
-    def __init__(self, size):
+    def __init__(self, size, num_ships, name, type):
         self.size = size 
         self.board = [["." for x in range(size)] for y in range(size)]
+        self.num_ships = num_ships
+        self. name = name
+        self.type = type
+        self.guesses = []
+        self.ships = []
+
+    def print_board(self):
+        for row in self.board:
+            print(" ".join(row))
+        
+    
+    def add_ships(self, x, y, type = "computer"):
+        # in case we extend code so user can set amout of ships
+        if len(self.ships) >= self.num_ships:
+            print("Error: You cannot add any more ships!")
+        else:
+            self.ships.append((x,y))
+            if self.type == "player":
+                self.board[x][y] = "@"
+
+
     
 
 def random_point(size):
     """
-    Generate a random number between 0 and the length of the board minus one.
+    Generate a random number between 0 and the length of the board(size) minus one.
     We minus 1 for the size of the board we set.
     """
     return randint(0,size - 1)
