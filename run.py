@@ -19,6 +19,10 @@ class Board:
         self.ships = []
 
     def print_board(self):
+        """
+        Prints board to terminal
+        """
+
         for row in self.board:
             print(" ".join(row))
         
@@ -26,6 +30,8 @@ class Board:
     def add_ships(self, x, y):
         # in case we extend code so user can set amout of ships
         
+        if len(self.ships) >= self.num_ships:
+            print("Error")
 
         self.ships.append((x,y))
         if self.type == "player":
@@ -65,6 +71,10 @@ def populate_board(board):
             x = random_point(board.size)
             y = random_point(board.size)
         board.add_ships(x, y)
+
+    # Print the board after popilating with ships
+
+    board.print_board()
 
 
 def valid_coordinates(x, y, board):
@@ -142,6 +152,9 @@ def run_game(computer_board, player_board):
             if not computer_board.ships:
                 print("Congratulations! You have sunk all the enemy ships!")
                 break
+        
+        # Print the computer's board after payer's turn
+        computer_board.print_board()
 
         
         # Computer's turn
@@ -154,6 +167,9 @@ def run_game(computer_board, player_board):
         if not player_board.ships:
             print("The computer has sunk all you ships. You lose!")
             break
+
+        # Print the player's board after computers turn.
+        player_board.print_board()
 
 
 
