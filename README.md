@@ -2,7 +2,7 @@
 
 Sink A Ship is a battleship game playid in Python terminal. It runs with the Code Institute mock terminal on Heroku.
 
-The user will win if they manages to find all the computers battleships, this has to be done before the computer finds theirs. 
+The user will win if they manage to find all the computers battleships, this has to be done before the computer finds theirs. 
 
 [Here is the live version](https://sink-a-ship-283abb4062a9.herokuapp.com/)
 
@@ -13,7 +13,7 @@ The user will win if they manages to find all the computers battleships, this ha
 
 Sink a ship is based on the classic game battleship. 
 
-In this version, will receive a short "mission" objectiv which is to sink enemy ships. There after player will get ask for their name. Two boards are then generated.
+In this version, the user will receive a short "mission" objective which is to sink enemy ships. There after player will get ask for their name. Two boards are then generated.
 
 The users ships are indicated by an @ sign and the computers ships are hidden, which the user cannot see.
 
@@ -29,7 +29,7 @@ The winner is the player who sinks all their opponent's battleships first.
 ### Existing features
 
 * Random board generation
-  * Ships are randomlu placed on both of the player and computer boards.
+  * Ships are randomly placed on both of the player and computer boards.
   * User cannot see where computers ships are.
 
  ![Generated board](assets/images/board.JPG)
@@ -50,7 +50,7 @@ The winner is the player who sinks all their opponent's battleships first.
  * Data maintained in  class instances.
   
 
-### Features Left to Implement
+### Features left to Implement
 
 *  Allow player to choose choose board size and amount of ships.
 *  Allow players to place their own ships by inputing coordinates.
