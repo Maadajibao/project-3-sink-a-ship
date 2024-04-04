@@ -41,14 +41,20 @@ class Board:
 
 
     def guess(self, x, y):
+        """
+        Accepts the coordinates of a guess and updates the board accordingly.
+        Returns a message indicating whether the guess was hit or miss
+        """
+
         self.guesses.append((x,y))
-        self.board[x][y] = "X"
+        
 
         if (x, y) in self.ships:
             self.board[x][y] = "*"
             return f"Boom! It Hits {self.name}"
 
         else:
+            self.board[x][y] = "X"
             return f"Slaash! It Misses {self.name}"
 
 
@@ -152,6 +158,9 @@ def run_game(computer_board, player_board):
             player_result = computer_board.guess(x, y)
             player_board.guesses.append(player_guess)
 
+            if  "Boom" in player_result:  # Check if the player hit a shit so that i can increment it
+                scores["player"] += 1
+
             if not computer_board.ships:
                 print("Congratulations! You have sunk all the enemy ships!")
                 break
@@ -165,6 +174,10 @@ def run_game(computer_board, player_board):
         computer_guess = (random_point(len(player_board.board)), random_point(len(player_board.board)))
         computer_result = player_board.guess(computer_guess[0], computer_guess[1])
         computer_board.guesses.append(computer_guess)
+
+        if  "Boom" in computer_result:  # Check if the computer hit a shit so that i can increment it
+            scores["computer"] += 1
+
 
         if not player_board.ships:
             print("The computer has sunk all you ships. You lose!")
@@ -188,14 +201,6 @@ def run_game(computer_board, player_board):
         print("-" * 35)
         
         
-        # increments scores depending on who hits
-
-        if player_result == "Boom!(hit)":
-            if player_guess:
-                scores["player"] += 1
-            elif computer_result == "Boom!(hit)":
-                scores["computer"] += 1
-
 
         # Prints score
 
@@ -207,7 +212,7 @@ def run_game(computer_board, player_board):
 
         # Prompt to quite the game
 
-        quite_game = input("\nDo you want to quit the game? \n(y/n): ")
+        quite_game = input("\nDo you want to quit the game? \nPress (y) otherwise press any other key: ")
         
         if quite_game.lower() == "y":
             print("Final Score:")
