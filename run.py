@@ -23,6 +23,10 @@ class Board:
         Prints board to terminal
         """
 
+        # Print player's name
+
+        print(f"Player: {self.name}")
+
         for row in self.board:
             print(" ".join(row))
         
@@ -195,7 +199,7 @@ def start_game():
     computer_board = Board(size, num_ships, "computer", "computer")
     player_board = Board(size, num_ships, player_name, "player")
 
-   
+    
     populate_board(player_board)
     populate_board(computer_board)
 
