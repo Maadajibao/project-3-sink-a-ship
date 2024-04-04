@@ -114,8 +114,8 @@ def make_guess(board):
     """
 
     while True:
-        x = input("Enter row (0-4): ")
-        y = input("Enter column (0-4): ")
+        x = input("Enter row (0-4): \n")
+        y = input("Enter column (0-4): \n")
 
         if valid_coordinates(x, y):
             x = int(x) 
@@ -217,7 +217,7 @@ def run_game(computer_board, player_board):
 
         # Prompt to quite the game
 
-        quite_game = input("\nDo you want to quit the game? \nPress (y) otherwise press any other key: ")
+        quite_game = input("\nDo you want to quit the game? \nPress (y) otherwise press any other key: \n")
         
         if quite_game.lower() == "y":
             print("Final Score:")
@@ -255,7 +255,7 @@ def start_game():
     scores["player"] = 0
     
     welcome() 
-    player_name = input("Please enter you name: ")
+    player_name = input("Please enter you name: \n")
     
     
     computer_board = Board(size, num_ships, "computer", "computer")
