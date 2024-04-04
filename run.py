@@ -25,7 +25,7 @@ class Board:
 
         # Print player's name
 
-        print(f"Player: {self.name}")
+        print(f"\n{self.name}'s board:")
 
         for row in self.board:
             print(" ".join(row))
@@ -66,7 +66,6 @@ def populate_board(board):
     """
     Will populate x with random_point and the same with y with ships from add_ship function.
     """
-
 
     for _ in range(board.num_ships):
         x = random_point(board.size)
@@ -145,6 +144,7 @@ def run_game(computer_board, player_board):
     while True:
 
         # Players turn
+
         print("\nPlayer's turn:")
         player_guess = make_guess(computer_board)
         if player_guess:
@@ -156,8 +156,8 @@ def run_game(computer_board, player_board):
                 print("Congratulations! You have sunk all the enemy ships!")
                 break
         
-        # Print the computer's board after payer's turn
-        player_board.print_board()
+    
+
 
         
         # Computer's turn
@@ -169,11 +169,13 @@ def run_game(computer_board, player_board):
         if not player_board.ships:
             print("The computer has sunk all you ships. You lose!")
             break
+        
+        
+        player_board.print_board() 
+        computer_board.print_board()   
+    
 
-        # Print the player's board after computers turn.
-
-        computer_board.print_board()
-
+        
 
         # Print player's and computer's guess and the result of the attacks
 
