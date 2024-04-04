@@ -46,10 +46,10 @@ class Board:
 
         if (x, y) in self.ships:
             self.board[x][y] = "*"
-            return f"Boom!(Hit) by {self.name}"
+            return f"Boom! It Hits {self.name}"
 
         else:
-            return f"Slaash(Miss) by {self.name}"
+            return f"Slaash! It Misses {self.name}"
 
 
     
@@ -149,7 +149,7 @@ def run_game(computer_board, player_board):
         player_guess = make_guess(computer_board)
         if player_guess:
             x, y = player_guess
-            result = computer_board.guess(x, y)
+            player_result = computer_board.guess(x, y)
             player_board.guesses.append(player_guess)
 
             if not computer_board.ships:
@@ -163,7 +163,7 @@ def run_game(computer_board, player_board):
         # Computer's turn
         print("\nComputer's turn:")
         computer_guess = (random_point(len(player_board.board)), random_point(len(player_board.board)))
-        result = player_board.guess(computer_guess[0], computer_guess[1])
+        computer_result = player_board.guess(computer_guess[0], computer_guess[1])
         computer_board.guesses.append(computer_guess)
 
         if not player_board.ships:
@@ -175,15 +175,17 @@ def run_game(computer_board, player_board):
 
         # Print player's and computer's guess
 
+        
         print("\nPlayer's guess:", player_guess)
-        print("Player shoots....", result)
+        print("Player shoots....", player_result)
+        
         print("\nComputer's guess:", computer_guess)
-        print("Computer shoots...", result)
+        print("Computer shoots...", computer_result)
 
-        if result == "Boom!(hit)":
+        if player_result == "Boom!(hit)":
             if player_guess:
                 scores["player"] += 1
-            else:
+            elif computer_result == "Boom!(hit)":
                 scores["computer"] += 1
 
         
