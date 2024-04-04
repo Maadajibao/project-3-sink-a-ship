@@ -32,13 +32,13 @@ class Board:
         
     
     def add_ships(self, x, y):
-        # in case we extend code so user can set amout of ships
-        
+        # in case we extend code so user can set amout of ships    
 
 
         self.ships.append((x,y))
         if self.type == "player":
             self.board[x][y] = "@"
+
 
     def guess(self, x, y):
         self.guesses.append((x,y))
@@ -46,9 +46,10 @@ class Board:
 
         if (x, y) in self.ships:
             self.board[x][y] = "*"
-            return "Boom!(Hit)"
+            return f"Boom!(Hit) by {self.name}"
+
         else:
-            return "Slaash(Miss)"
+            return f"Slaash(Miss) by {self.name}"
 
 
     
@@ -142,14 +143,13 @@ def run_game(computer_board, player_board):
     """
 
     while True:
-        # Players turn
 
+        # Players turn
         print("\nPlayer's turn:")
         player_guess = make_guess(computer_board)
         if player_guess:
             x, y = player_guess
             result = computer_board.guess(x, y)
-            print("Result of player's guess:", result)
             player_board.guesses.append(player_guess)
 
             if not computer_board.ships:
@@ -164,7 +164,6 @@ def run_game(computer_board, player_board):
         print("\nComputer's turn:")
         computer_guess = (random_point(len(player_board.board)), random_point(len(player_board.board)))
         result = player_board.guess(computer_guess[0], computer_guess[1])
-        print("Result of computer's guess:", result)
         computer_board.guesses.append(computer_guess)
 
         if not player_board.ships:
@@ -173,6 +172,21 @@ def run_game(computer_board, player_board):
 
         # Print the player's board after computers turn.
         computer_board.print_board()
+
+        # Print player's and computer's guess
+
+        print("\nPlayer's guess:", player_guess)
+        print("Player shoots....", result)
+        print("\nComputer's guess:", computer_guess)
+        print("Computer shoots...", result)
+
+        if result == "Boom!(hit)":
+            if player_guess:
+                scores["player"] += 1
+            else:
+                scores["computer"] += 1
+
+        
 
 
 
@@ -209,5 +223,7 @@ def start_game():
 
 start_game()
 
-
+print("Final Score:")
+print("Player:", scores["player"])
+print("Player:", scores["computer"])
 
