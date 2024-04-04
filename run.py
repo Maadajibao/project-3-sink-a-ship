@@ -171,10 +171,11 @@ def run_game(computer_board, player_board):
             break
 
         # Print the player's board after computers turn.
+
         computer_board.print_board()
 
-        # Print player's and computer's guess and the result of the attacks
 
+        # Print player's and computer's guess and the result of the attacks
 
         print("-" * 35)        
         print("\nPlayer's guess:", player_guess)
@@ -183,7 +184,7 @@ def run_game(computer_board, player_board):
         print("\nComputer's guess:", computer_guess)
         print("Computer shoots...", computer_result)
         print("-" * 35)
-        print("-" * 35)
+        
         
         # increments scores depending on who hits
 
@@ -193,15 +194,32 @@ def run_game(computer_board, player_board):
             elif computer_result == "Boom!(hit)":
                 scores["computer"] += 1
 
+
+        # Prints score
+
+        print("-" * 35)
+        print("\nAfter this round, scores are:")
+        print(f"{player_board.name}:", scores["player"])
+        print("Computer:", scores["computer"], "\n")
+        print("-" * 35)
+
         # Prompt to quite the game
 
-        quite_game = input("\nDo you want to quit the game? (y/n): ")
+        quite_game = input("\nDo you want to quit the game? \n(y/n): ")
+        
         if quite_game.lower() == "y":
             print("Final Score:")
-            print("Player:", scores["player"])
+            print(f"{player_board.name}:", scores["player"])
             print("Computer:", scores["computer"])
             print("Thank you for playing!")
             return
+
+    # Print the players and computer board
+
+    print("\nPlayer's board:")
+    player_board.print_board()
+    print("Computer's board:")
+    computer_board.print_board()
         
         
 
