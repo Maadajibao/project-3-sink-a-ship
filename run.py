@@ -80,7 +80,7 @@ def populate_board(board):
     board.print_board()
 
 
-def valid_coordinates(x, y, board):
+def valid_coordinates(x, y):
 
     """
     Validates that the input coordinates are within the board
@@ -90,11 +90,11 @@ def valid_coordinates(x, y, board):
         x = int(x)
         y = int(y)
 
-        if x < 0 or x >= len(board.board) or y < 0 or y >= len(board.board[0]):
-            raise ValueError("Your shot is out of bounds! Choose a number within the board's range.")
+        if x < 0 or x > 4 or y < 0 or y > 4:
+            raise ValueError("Your shot is out of bounds! Choose a number within the board's range")
     
     except ValueError as e:
-        print(f"Invalid data: {e}, please try again")
+        print(f"Invalid data: {e}, please try again.")
         print("Please enter an number between 1 and 5")
         return False
     return True
@@ -111,7 +111,7 @@ def make_guess(board):
         x = input("Enter row (0-4): ")
         y = input("Enter column (0-4): ")
 
-        if valid_coordinates(x, y, board):
+        if valid_coordinates(x, y):
             return int(x), int(y)
         else:
             print("invalid coordinates! Please try again")
@@ -170,12 +170,12 @@ def run_game(computer_board, player_board):
             print("The computer has sunk all you ships. You lose!")
             break
         
-        
+
+        # Prints both player's and computer's boards after each turn
+
         player_board.print_board() 
         computer_board.print_board()   
     
-
-        
 
         # Print player's and computer's guess and the result of the attacks
 
