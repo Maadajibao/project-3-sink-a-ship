@@ -139,14 +139,15 @@ def welcome():
     """
 
     print("Welcome to Sink A Ship, a battleship game\n")
-    print("You as our general will command a feelt of 4 ship which will be randomly generated on the playboard\n")
+    print("You as our general will command a feelt of 4")
+    print("ship which will be randomly generated on the playboard\n")
     print("-" * 35)
     print("\nMission:""You task is to Sink All Enemy Ships\n")
     print("-" * 35)
-    print(f"\nBoard Size:  | Number of Ships: ")
+    print(f"\nBoard Size: 5 | Number of Ships: 4 ")
     print("Top left corner is row: 0, col: 0\n")
     print("-" * 35)
-    print("Whats your name General?:\n")
+    print("\nWhats your name General?:\n")
     
     
 def run_game(computer_board, player_board):
