@@ -118,7 +118,12 @@ def make_guess(board):
         y = input("Enter column (0-4): ")
 
         if valid_coordinates(x, y):
-            return int(x), int(y)
+            x = int(x) 
+            y = int(y)
+            if (x,y) not in board.guesses:  # Checks if the have not been guessed before
+                return x, y
+            else:
+                print("\nYou'have already guessed these coordinates. Please try again.\n")
         else:
             print("invalid coordinates! Please try again")
     
@@ -249,8 +254,9 @@ def start_game():
     scores["computer"] = 0
     scores["player"] = 0
     
-    welcome()
+    welcome() 
     player_name = input("Please enter you name: ")
+    
     
     computer_board = Board(size, num_ships, "computer", "computer")
     player_board = Board(size, num_ships, player_name, "player")
